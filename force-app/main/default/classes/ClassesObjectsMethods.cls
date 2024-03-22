@@ -26,7 +26,7 @@
  * Math class: https://developer.salesforce.com/docs/atlas.en-us.apexref.meta/apexref/apex_methods_system_math.htm
  * Classes: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_classes_understanding.htm
  *
- * @author Your Name
+ * @author Frank Larkin
  */
 
 public with sharing class ClassesObjectsMethods {
@@ -39,18 +39,15 @@ public with sharing class ClassesObjectsMethods {
      * @return A list containing the length of the string, a substring of the string, and the string in lower case.
      */
     public static List<String> practiceStringMethods() {
-        // Initialize a String with 'Hello, Salesforce!'
-        
-        // Get the length of the String        
-        // Get a substring of the String of the first 5 characters
-        // Convert the String to lower case
-        
-        // Return the list with the string data
-        // In the first position add the string length
-        // In the second position add the substring
-        // In the third position add the string in lower case
-
-        return null; // Replace null with the variable you used to store the result
+        String testString = 'Hello, Salesforce!';
+        String stringLength = testString.length().toString();        
+        String substringOfTestString = testString.substring(0,5);
+        String lowerCaseTestString = testString.toLowerCase();
+        List<String> stringData = new List<String>();
+        stringData.add(stringLength);
+        stringData.add(substringOfTestString);
+        stringData.add(lowerCaseTestString);
+        return stringData;
     }
 
     /**
@@ -61,15 +58,23 @@ public with sharing class ClassesObjectsMethods {
      * @return A list of boolean values indicating whether the string starts with 'Sales', ends with 'Force', or contains 'Awesome'.
      */
     public static List<Boolean> checkStringContent(String input) {
-        // Initialize a list to store the results
-        
-        // Check if the string starts with 'Sales'
-        
-        // Check if the string ends with 'Force'
-        
-        // Check if the string contains 'Awesome'
-        
-        return null; // Replace null with the variable you used to store the result
+        List<Boolean> resultsList = new List <Boolean>();
+        Boolean startsWithSales = false;
+        Boolean endsWithForce = false;
+        Boolean containsAwesome = false;
+        if (input.startsWith('Sales')) {
+            startsWithSales = true;
+        }
+        if (input.endsWith('Force')) {
+            endsWithForce = true;
+        }
+        if (input.contains('Awesome')) {
+            containsAwesome = true;
+        }
+        resultsList.add(startsWithSales);
+        resultsList.add(endsWithForce);
+        resultsList.add(containsAwesome);
+        return resultsList;
     }
 
     /**
@@ -80,16 +85,25 @@ public with sharing class ClassesObjectsMethods {
      * @return A string consisting of only unique words from the input sentence.
      */
     public static String removeDuplicateWords(String sentence) {
-        // Split the sentence into words
-
-        // Create a set to store the unique words
-
-        // Add each word to the set
-
-        // Join the unique words back into a sentence
-
-        // Return the sentence with unique words
-        return null; // Replace null with the variable you used to store the result
+        List<String> wordList = sentence.split(' ', 5);
+        Set<String> wordSet = new Set<String>();
+        for (Integer i = 0; i < wordList.size(); i++) {
+            if (wordSet.contains(wordlist[i])) {
+                System.debug(wordlist[i] + ' exists in set. Skipping.');
+            } else {
+                wordSet.add(wordlist[i]);
+            }
+        }
+        String newSentence = '';
+        Integer count = 0;
+        for (String word : wordSet) {
+            newSentence += word;
+            count += 1;
+            if (count < wordSet.size()) {
+                newSentence += ' ';
+            } 
+        }  
+        return newSentence;
     }
 
     /**
@@ -101,17 +115,20 @@ public with sharing class ClassesObjectsMethods {
      * @return The number of vowels in the string.
      */
     public static Integer countVowels(String str) {
-        // Initialize the result Integer
-
-        /*
-        for () {
-            // get individual characters from the string - hint use substring or split
-            // check if the character is a vowel
-            // if it is a vowel, increment the result Integer
+        Integer vowelCount = 0;
+        String testString = '';
+        Integer beginIndex = 0;
+        Integer endIndex = 1;    
+        for (Integer i = 0; i < str.length(); i++) {
+            testString = str.substring(beginIndex, endIndex);
+            if (testString == 'a' || testString == 'e' || testString == 'i' || testString == 'o' || testString == 'u') {
+                vowelCount += 1;
+            }
+            beginIndex += 1;
+            endIndex += 1;
         }
-        */
 
-        return null; // Replace null with the variable you used to store the result
+        return vowelCount;
     }
 
     /**
@@ -122,20 +139,20 @@ public with sharing class ClassesObjectsMethods {
      * @return A string containing the names of scientists that contain the letter 'g'.
      */
     public static String findTheScientist() {
-        // The list of scientists' names
         List<String> scientistNames = new List<String>{'Tim Berners-Lee', 'Alan Turing', 'Grace Hopper', 'Donald Knuth', 'Guido van Rossum', 'Ken Thompson', 'Stephen Hawking'};
-
-        // The variable to store the concatenated string
-
-        // Loop through the list of scientists' names
-
-            // If the name doesn't contain the letter 'G', skip this iteration
-
-            // Add the name to the result string, followed by a comma
-
-        // Remove the last comma from the result string
-
-        return null; // Replace null with the variable you used to store the result
+        String nameString = '';
+        String name = '';
+        for (Integer i = 0; i < scientistNames.size(); i++) {   
+            name = scientistNames[i];
+            if (name.contains('g') || name.contains('G')) {
+                nameString += name;
+                nameString += ',';
+            }
+        }
+        Integer beginIndex = 0;
+        Integer endIndex = nameString.length() - 1;
+        nameString = nameString.substring(beginIndex, endIndex);
+        return nameString;
     }
 
     /**
@@ -147,12 +164,8 @@ public with sharing class ClassesObjectsMethods {
      * @return The absolute value of the difference
      */
     public static Double calculateDifferenceOfSquares(Double a, Double b) {
-        // Square the input numbers using the Math.pow() function
-
-        // Calculate the absolute difference using Math.abs() function
-
-        // Return the result
-        return null; // Replace null with the variable you used to store the result
+        Double difference = Math.abs(Math.pow(a, 2) - Math.pow(b, 2));
+        return difference;
     }
 
     /**
@@ -162,10 +175,16 @@ public with sharing class ClassesObjectsMethods {
      * @return A integer between 50 and 100.
      */
     public static Integer generateRandomNumber() {
-        // Use Math class to generate number between 50 and 100
-
-        // Return the random integer
-        return null; // Replace null with the variable you used to store the result
+        Double randomNumber = Math.random();
+        randomNumber = randomNumber * 100;
+        if (randomNumber < 50) {
+            randomNumber += 50;
+        } else if (randomNumber > 100) {
+            randomNumber -= 50;
+        }
+        randomNumber = Math.round(randomNumber);
+        Integer randomInt = (Integer)randomNumber;
+        return randomInt;
     }
 
     /**
@@ -175,12 +194,9 @@ public with sharing class ClassesObjectsMethods {
      * @return The current date in the current user locale format.
      */
     public static String getCurrentDate() {
-        // Get the todays date
-
-        // Format the current date
-
-        // Return the result
-        return null; // Replace null with the variable you used to store the result
+        Date todaysDate = date.today();
+        String dateString = todaysDate.format();
+        return dateString;
     }
 
     /**
@@ -212,10 +228,11 @@ public with sharing class ClassesObjectsMethods {
      * @return The a positive number years between the two dates, or null if either date is null.
      */
     public static Integer calculateYearDifference(Date d1, Date d2) {
-
-        // Subtract the difference in years
-
-        return null; // Replace null with the variable you used to store the result
+        if (d1 == null || d2 == null) {
+            return null;
+        }
+        Integer differenceBetweenDates = Math.abs(d1.year() - d2.year());
+        return differenceBetweenDates; 
     }
 
     /**
@@ -227,19 +244,22 @@ public with sharing class ClassesObjectsMethods {
      */
     public class Book {
         // Declare three public instance variables - title, author, pages
-        // title
-        // author
-        // pages
+        public String title = '';
+        public String author = '';
+        public Integer pages = 0;
     
         // Book constructor to initialize the title and author
-        public Book() {
+        public Book(String titleOfBook, String authorOfBook) {
             // Initialize the title and author
+            this.title = titleOfBook;
+            this.author = authorOfBook;
         }
     
         // Method that returns the details of the book
         public String getBookDetails() {
             // return A string containing the details of the book in the format "Title: <title>, Author: <author>"
-            return null; // Replace null with the variable you used to store the result
+            String returnString = 'Title: ' + title + ', Author: ' + author;
+            return returnString; // Replace null with the variable you used to store the result
         }
     }
     
