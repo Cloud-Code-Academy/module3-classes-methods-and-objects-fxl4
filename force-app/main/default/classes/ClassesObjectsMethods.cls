@@ -89,7 +89,7 @@
         Set<String> wordSet = new Set<String>();
         for (Integer i = 0; i < wordList.size(); i++) {
             if (wordSet.contains(wordlist[i])) {
-                System.debug(wordlist[i] + ' exists in set. Skipping.');
+                System.debug('set of words contains this word');
             } else {
                 wordSet.add(wordlist[i]);
             }
@@ -206,8 +206,6 @@
      * @return The number of the day of the week for the given date.
      */
     public static String getDayOfWeek(DateTime dt) {
-        // Define a map of day of the week as a key and day number as the value
-        // Monday = 1, Tuesday = 2, etc.
         Map<String,Integer> mapOfDays = new Map<String,Integer>();
         mapOfDays.put('Monday', 1);
         mapOfDays.put('Tuesday', 2);
@@ -216,17 +214,9 @@
         mapOfDays.put('Friday', 5);
         mapOfDays.put('Saturday', 6);
         mapOfDays.put('Sunday', 7);
-        System.debug(mapOfDays);
 
-        // Get the day name using .format('EEEE');
         String dayOfTheWeek = dt.format('EEEE');
-        System.debug(dayOfTheWeek);
-
-        // Get the day number from the map using the day name
         Integer numberOfTheDay = mapOfDays.get(dayOfTheWeek);
-        System.debug(numberOfTheDay);
-
-        // Return the result as a string
         return numberOfTheDay.toString();
     }
 
@@ -257,24 +247,16 @@
      * where you need to manipulate and manage book information.
      */
     public class Book {
-        // Declare three public instance variables - title, author, pages
-        // title
         public String title;
-        // author
         public String author;
-        // pages
         public Integer pages;
     
-        // Book constructor to initialize the title and author
         public Book(String title, String author) {
-            // Initialize the title and author
             this.title = title;
             this.author = author;
         }
     
-        // Method that returns the details of the book
         public String getBookDetails() {
-            // return A string containing the details of the book in the format "Title: <title>, Author: <author>"
             String bookString = 'Title: ' + title + ', Author: ' + author;
             return bookString; // Replace null with the variable you used to store the result
         }
@@ -288,14 +270,9 @@
      * @return A string containing the details of the book.
      */
     public static String createAndGetBookDetails() {
-        // Create a Book object with title "A Brief History of Time" and author "Stephen Hawking"
         Book newBook = new Book('A Brief History of Time', 'Stephen Hawking');
-
-        // Call the getBookDetails method on the book object to get the details of the book
         String returnString = newBook.getBookDetails();
-
-        // Return the details of the book
-        return returnString; // Replace null with the variable you used to store the result
+        return returnString;
     }
 
     /**
@@ -308,28 +285,15 @@
      * @return return a list of books.
      */
     public static List<Book> generateBookList(Book myBook1) {
-        // Create a list of books
         List<Book> bookList = new List<Book>();
-        //Book myBook1 = new Book('A Brief History of Time', 'Stephen Hawking');        
-
-        // Update the title and author of myBook1
         myBook1.title = 'Harry Potter and the Chamber of Secrets';
         myBook1.author = 'J.K. Rowling';
-
-        // Update the pages for myBook1 to 352
         myBook1.pages = 352;
-
-        // Create a new Book object with title "A Brief History of Time" and author "Stephen Hawking"
         Book myBook2 = new Book('A Brief History of Time', 'Stephen Hawking');
-
-        // Update the pages for A Brief History of Time to 256
         myBook2.pages = 256;
-
-        // Add the book to the list
         bookList.add(myBook1);
         bookList.add(myBook2);
-        
-        return bookList; // Replace null with the variable you used to store the result      
+        return bookList; 
     }
 
 
@@ -341,11 +305,9 @@
      * where you need to manipulate and manage person information.
      */
     public class Person {
-        // Declare private two instance variables - (TEXT) name and (Number) age
         private String name;
         private Integer age;
         
-        // Constructor to initialize the name and age
         public Person(String name, Integer age) {
             this.name = name;
             this.age = age;
@@ -355,26 +317,22 @@
         // Return a string in the format "Hello, my name is <name> and I am <age> years old."
         // For example, introduceYourself() should return a string like "Hello, my name is John Doe and I am 28 years old."
         public String introduceYourself(Person currentPerson) {
-            String introductionString = 'Hello, my name is ' + name + ' and I am ' + age.toString() + ' years old';
+            String introductionString = 'Hello, my name is ' + name + ' and I am ' + age.toString() + ' years old.';
             return introductionString;
         }
             
-        // Getter method that returns the name of the person
         public String getName() {
             return name;
         }
             
-        // Getter method that returns the age of the person
         public Integer getAge() {
             return age;
         }
 
-        // Setter method that sets the name of the person
         public void setName(String newName) {
             this.name = newName;
         }
 
-        // Setter method that sets the age of the person
         public void setAge(Integer newAge) {
             this.age = newAge;
         }
@@ -389,16 +347,13 @@
 
     public static List<String> personDetails() {
         List<String> results = new List<String>();
-        // Create a new instance of Person class
-        // Name the person 'John Doe' and set the age to 28
-
-        // Add the details of the person using the introduceYourself method
-
-        // Get the name of the person using the getter method and add it to the list
-
-        // Get the age of the person using the getter method and add it to the list
-        
-        return null; // Replace null with the variable you used to store the result
+        Person johnDoe = new Person('', 0);
+        johnDoe.setName('John Doe');
+        johnDoe.setAge(28);
+        results.add(johnDoe.introduceYourself(johnDoe));
+        results.add(johnDoe.getName());
+        results.add(johnDoe.getAge().toString());
+        return results;
     }
 
     /**
@@ -409,10 +364,8 @@
      * @return A new instance of the Person class.
      */
     public static Person createPerson(String name, Integer age) {
-        // Create a new instance of the Person class using the provided name and age
-        
-        // Return the new instance of the Person class
-        return null; // Replace null with the variable you used to store the result
+        Person createdPerson = new Person(name, age);
+        return createdPerson;
     }
 
     /**
@@ -425,15 +378,14 @@
      * @return A list of new Person objects.
      */
     public static List<Person> createMultiplePersons(List<String> names, Integer age) {
+        List<Person> listOfPeople = new List<Person>();
 
-        // Loop through each name in the provided list of names
-            // Create a new Person object for each name
-            
-            // Add the new Person object to the list of Person objects
-        
-        
-        // Return the list of Person objects
-        return null; // Replace null with the variable you used to store the result
+        for (String name : names) {
+            Person newPersonFromLoop = createPerson(name, 30);
+            listOfPeople.add(newPersonFromLoop);
+        }
+
+        return listOfPeople;
     }
 
 
@@ -448,15 +400,9 @@
      * @return The Person object of the older person.
      */
     public static Person getOlderPerson(Person person1, Person person2) {
-        System.debug('test');
-        
-        /**
-        if (person1.age > person2.age || person1.age == person2.age) {
+        if (person1.age >= person2.age) {
             return person1;
-        } else if (person1.age < person2.age) {
-            return person2;
         }
-        */
-        return null;
+        return person2;
     }
 }
